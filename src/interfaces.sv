@@ -32,7 +32,7 @@ interface cash_intf();
 endinterface
 
 //Интерфейс с внешней памятью
-interface core_intf();
+interface memory_intf();
   logic[31:0] mem_addr;
   logic mem_valid;
   logic[31:0] mem_rdata;
