@@ -37,7 +37,9 @@ interface memory_intf();
   logic mem_valid;
   logic[31:0] mem_rdata;
   logic mem_ready;
-
+  logic[2:0] hsize;
+  logic[1:0] h_trans;
+  
   modport cash_controller(
     input mem_rdata, mem_ready;
     output mem_addr, mem_valid;
