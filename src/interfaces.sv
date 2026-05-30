@@ -9,6 +9,10 @@ interface core_intf();
     input core_addr, core_valid;
     output core_rdata, ready_core;
   );
+
+   modport pre_buff(
+    input core_addr, core_valid;
+  );
 endinterface
 
 //Интерфейс с кэшем
@@ -16,18 +20,27 @@ interface cache_intf();
   logic[3:0] storage_windex;
   logic storage_we;
   logic[3:0] storage_rindex;
-  logic[99:0] storage_wtag;
+  logic[24:0] storage_wtag;
   logic[127:0] storage_wdata;
   logic storage_rvalid;
-  logic[99:0] storage_rtag;
+  logic[24:0] storage_rtag;
   logic[127:0] storage_rdata;
+  logic buf_ready;
+  logic[32:0] buf_data;
+  logic[24:0] buf_tag;
   modport cache_controller(
-    input storage_rtag, storage_rdata, storage_rvalid;
-    output storage_windex, storage_we, storage_rindex, storage_wtag, storage_wdata;
+    input buf_ready, buf_data, buf_tag;
+    output storage_windex, storage_we, storage_wtag, storage_wdata;
   );
+  
   modport storage(
-    output storage_rtag, storage_rdata, storage_rvalid;
+    output storage_rtag, storage_rdata;
     input storage_windex, storage_we, storage_rindex, storage_wtag, storage_wdata;
+  );
+
+  modport pre_buff(
+    input storage_rtag, storage_rdata;
+    output storage_rindex, buf_ready, buf_data, buf_tag;
   );
 endinterface
 
