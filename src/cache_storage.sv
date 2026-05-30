@@ -15,7 +15,7 @@ module cache_storage(
       if(!inf.storage_we) begin
         inf.storage_rtag[23:0] <= tag[inf.storage_rindex];
         inf.storage_rdata <= data[inf.storage_rindex];
-        inf.storage_rvalid <= 1;
+        inf.storage_rtag[0] <= 1;
       end else begin
         tag[inf.storage_windex] <= inf.storage_wtag;
         data[inf.storage_windex] <= inf.storage_wdata;
