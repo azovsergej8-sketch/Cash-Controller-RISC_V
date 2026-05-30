@@ -13,14 +13,14 @@ endinterface
 
 //Интерфейс с кэшем
 interface cache_intf();
-  logic[5:0] storage_windex;
+  logic[3:0] storage_windex;
   logic storage_we;
-  logic[5:0] storage_rindex;
-  logic[24:0] storage_wtag;
-  logic[31:0] storage_wdata;
+  logic[3:0] storage_rindex;
+  logic[99:0] storage_wtag;
+  logic[127:0] storage_wdata;
   logic storage_rvalid;
-  logic[24:0] storage_rtag;
-  logic[31:0] storage_rdata;
+  logic[99:0] storage_rtag;
+  logic[127:0] storage_rdata;
   modport cache_controller(
     input storage_rtag, storage_rdata, storage_rvalid;
     output storage_windex, storage_we, storage_rindex, storage_wtag, storage_wdata;
