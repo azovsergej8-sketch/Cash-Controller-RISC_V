@@ -20,7 +20,7 @@ module pre_access_buffer(
           buff_intf_cache.buf_ready <= 0;
           if(buff_intf_core.core_valid && buff_intf_core.ready_core) begin
             register_addr <= buff_intf_core.core_addr;
-            buff_intf_cache.storage_rindex <= buff_intf_core.core_addr[8:4];
+            buff_intf_cache.storage_rindex <= buff_intf_core.core_addr[7:4];
             state <= CACHE_WAIT;
             offset <= buff_intf_core.core_addr[3:1];
           end
